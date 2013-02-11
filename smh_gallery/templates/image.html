@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block one_column %}
+<h1>{{gallery.name}}</h1>
+<br/>
+<div class="row-fluid">
+    <div class="span6">
+        <a href="{{ image.image.url }}">
+            <img src="{{ image.image.url_800x494 }}" alt="{{ image.name }}">
+        </a>
+    </div>    
+    <div class="span1">
+    </div>
+    <div class="span5">
+        <h2>{{image.name}}</h2>
+        <p class="lead">{{image.description}}<p>
+    </div>
+</div>
+
+
+
+{% endblock %}

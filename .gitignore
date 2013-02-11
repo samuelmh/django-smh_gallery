@@ -1,6 +1,4 @@
 *~
-
 *.pyc
 sqlitedb
-
 smh_gallery/static/galleryimages/*

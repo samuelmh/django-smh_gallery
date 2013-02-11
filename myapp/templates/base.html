@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://twitter.github.com/bootstrap/examples/hero.html# -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>My App (django_smh_gallery)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="{{ STATIC_URL }}libs/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 20px;
+      }
+    </style>
+    <link href="{{ STATIC_URL }}libs/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    {% block head %}
+
+    {% endblock %}
+
+  </head>
+
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+
+          <a class="brand">My Portfolio</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li {% if section == "home" %}class="active"{% endif %}>
+                <a href="{% url home %}"><i class="icon-home"></i> Home</a>
+              </li>
+              <li>
+                <a href="http://samucoder.blogspot.com"><i class="icon-pencil"></i> Blog</a>
+              </li>
+
+              <li {% if section == "mygallery" %}class="active"{% endif %}>
+                <a href="{% url smh_gallery_gallery "mygallery" %}"><i class="icon-picture"></i> My Gallery</a>
+              </li>
+
+            </ul>
+
+            <div class="pull-right">
+              <ul class="nav">
+                 <li {% if section == "about_me" %}class="active"{% endif %}><a href="{% url static_section "about_me" %}"><i class="icon-user"></i> About me</a></li>
+              </ul>
+            </div>
+
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      {% block one_column %}
+
+      {% endblock %}
+    </div>
+
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
+          {% block small_column %}
+
+          {% endblock %}
+        </div>
+        <div class="span10">
+          {% block big_column %}
+
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <footer>
+        <p>© Yourself 2013</p>
+      </footer>
+    </div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ STATIC_URL }}libs/jquery/jquery-1.9.1.min.js"></script>
+    <script src="{{ STATIC_URL }}libs/bootstrap/js/bootstrap.min.js"></script>
+    {% block js %}
+    {% endblock %}
+
+</body></html>

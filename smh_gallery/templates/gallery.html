@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block one_column %}
+<h1>{{gallery.name}}</h1>
+<p class="lead">{{gallery.description}}<p>
+
+{% comment %}
+Bootstrap does strange things, so I create a row with 4 elements max.
+{% endcomment%}
+
+{% for image in images %}
+    {% if forloop.counter0|divisibleby:"4" %}<ul class="thumbnails">{% endif %}
+        <li class="span3">
+            <a id="{{image.slug}}" href="{% url smh_gallery_image gallery.slug image.slug %}"  class="thumbnail">
+                <img src="{{image.image.url_370x229}}" alt="{{image.name}}" />
+            </a>
+        </li>
+    {% if forloop.counter|divisibleby:"4" %}</ul>{% endif %}
+{% endfor %}
+  
+
+<!--<style type="text/css">
+    .modal {
+        width: 850px;
+        margin-left: -400px;
+        height: auto;
+    }
+</style>-->
+
+<div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="modalTitle">Modal header</h3>
+    </div>
+    <div class="modal-body">
+        <p class="text-center">
+            <img id="modalImage" src="" />
+        </p>
+    </div>  
+    <div class="modal-footer">
+        <a id="modalLink" href="">More</a>
+    </div>
+</div>
+  
+
+{% endblock %}
+
+
+{% block js %}
+<script type="text/javascript">
+
+
+    $(window).load(function(){            
+               
+        // clone image
+        $('.thumbnail img').each(
+            function(){
+                var img = $(this); //Will be grayscaled
+                parent = $(this).parent()[0];                
+                img.clone().addClass('img_color').insertBefore(img);                
+                img.addClass('img_grayscale');
+                var img_gray = $(img).parent().find('.img_grayscale')[0];
+                var img_color = $(img).parent().find('.img_color')[0];
+                copy_style(img_gray, img_color);
+                img_gray.src = grayscale(this.src);                
+            }
+        );
+        
+        $('.thumbnail .img_color').mouseover(
+            function(){                
+                $(this).stop().animate({opacity:1}, 1000);
+            });
+            
+        $('.thumbnail .img_color').mouseout(
+            function(){
+                $(this).stop().animate({opacity:0}, 1000);
+            }
+        );
+        
+        {% for image in images %}
+            $('#{{image.slug}}').on('click',
+                function(){
+                    modal_show( '{{ image.name }}', '{{ image.image.url_800x494 }}', '{% url smh_gallery_image gallery.slug image.slug %}');
+                    return(false);
+                }
+            );
+        {% endfor %}
+        
+    });
+
+    
+    //Responsive
+    $(window).resize(function() {
+        $('.thumbnail').each(
+            function(){
+                var img_gray = $(this).find('.img_grayscale')[0];
+                var img_color = $(this).find('.img_color')[0];
+                copy_style(img_gray, img_color);
+            }
+        );
+    });
+    
+    
+    function modal_show(title, image, moreLink){
+        $("#modalTitle").html(title);
+        $("#modalImage").attr("src",image);
+        $("#modalLink").attr("href",moreLink);
+        $("#modal").modal();
+    }
+    
+    
+    function copy_style(origin, destiny){
+         $(destiny).css({"position":"absolute","z-index":"998","opacity":"0"});
+         $(destiny).css({"position":"absolute","width":origin.offsetWidth,"height":origin.offsetHeight});               
+         $(destiny).offset($(origin).offset());
+    }
+    
+    
+    // Grayscale w canvas method
+    function grayscale(src){
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+        var imgObj = new Image();
+        imgObj.src = src;
+        canvas.width = imgObj.width;
+        canvas.height = imgObj.height; 
+        ctx.drawImage(imgObj, 0, 0); 
+        var imgPixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        for(var y = 0; y < imgPixels.height; y++){
+            for(var x = 0; x < imgPixels.width; x++){
+                var i = (y * 4) * imgPixels.width + x * 4;
+                var avg = ((imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) /2) - 32  ;
+                imgPixels.data[i] = avg; 
+                imgPixels.data[i + 1] = avg; 
+                imgPixels.data[i + 2] = avg;
+            }
+        }
+        ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
+        return canvas.toDataURL();
+    }
+    
+</script>
+{% endblock %}
