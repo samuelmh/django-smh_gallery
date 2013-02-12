@@ -3,8 +3,6 @@
 {% block head %}
 
   <link rel="stylesheet" href="{{ STATIC_URL }}foundation/stylesheets/foundation.min.css">
-  <link rel="stylesheet" href="{{ STATIC_URL }}foundation/stylesheets/app.css">
-
   <script src="{{ STATIC_URL }}foundation/javascripts/modernizr.foundation.js"></script>
 
 {% endblock %}
@@ -16,7 +14,6 @@
 {% comment %}
 Bootstrap does strange things, so I create a row with 4 elements max.
 {% endcomment%}
-
 
 {% for image in images %}
   {% if forloop.counter0|divisibleby:"4" %}<ul class="thumbnails" data-clearing>{% endif %}
@@ -38,20 +35,6 @@ Bootstrap does strange things, so I create a row with 4 elements max.
 <script type="text/javascript">
 
     $(window).load(function(){
-
-        // clone image
-        /*$('.thumbnail img').each(
-            function(){
-                var img = $(this); //Will be grayscaled
-                parent = $(this).parent()[0];
-                img.clone().addClass('img_color').insertBefore(img);
-                img.addClass('img_grayscale');
-                var img_gray = $(img).parent().find('.img_grayscale')[0];
-                var img_color = $(img).parent().find('.img_color')[0];
-                copy_style(img_gray, img_color);
-                img_gray.src = grayscale(this.src);
-            }
-        );*/
 
         $('.thumbnail img').each(
             function(){
