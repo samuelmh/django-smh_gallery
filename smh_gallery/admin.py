@@ -10,7 +10,7 @@ admin.site.register(Gallery, GalleryAdmin)
 
 class ImageAdmin(admin.ModelAdmin):
     fields = ('name','image','description','date','gallery')
-    list_display = ('name',)
+    list_display = ('name','image')
     list_filter = ('gallery',)
 
 admin.site.register(Image, ImageAdmin)

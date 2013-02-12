@@ -19,7 +19,7 @@ Bootstrap does strange things, so I create a row with 4 elements max.
   {% if forloop.counter0|divisibleby:"4" %}<ul class="thumbnails" data-clearing>{% endif %}
   <li class="span3">
     <a href="{{image.image.url}}" class="thumbnail">
-      <img data-caption="Maecenas sed diam eget risus varius blandit sit amet non magna." src="{{image.image.url_370x229}}" alt="{{image.name}}">
+      <img data-caption="{{image.name}}({{image.date}}) - {{image.description}}" src="{{image.image.url_370x229}}" alt="{{image.name}}">
     </a>
   </li>
   {% if forloop.last or forloop.counter|divisibleby:"4"  %}</ul>{% endif %}
