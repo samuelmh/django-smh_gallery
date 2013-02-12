@@ -40,7 +40,7 @@ Bootstrap does strange things, so I create a row with 4 elements max.
     $(window).load(function(){
 
         // clone image
-        $('.thumbnail img').each(
+        /*$('.thumbnail img').each(
             function(){
                 var img = $(this); //Will be grayscaled
                 parent = $(this).parent()[0];
@@ -50,6 +50,27 @@ Bootstrap does strange things, so I create a row with 4 elements max.
                 var img_color = $(img).parent().find('.img_color')[0];
                 copy_style(img_gray, img_color);
                 img_gray.src = grayscale(this.src);
+            }
+        );*/
+
+        $('.thumbnail img').each(
+            function(){
+                var img = $(this); //Will be grayscaled
+                parent = $(this).parent()[0];
+                img.clone().addClass('img_color').insertBefore(img);
+                img.addClass('img_grayscale');
+                var img_gray = $(img).parent().find('.img_grayscale')[0];
+                var img_color = $(img).parent().find('.img_color')[0];
+                copy_style(img_gray, img_color);
+                $(img_color).css({"opacity":"1"}); //Avoid blink
+                img_gray.src = grayscale(this.src);
+            }
+        );
+
+        //Avoid blink
+        $('.img_color').each(
+            function(){
+                $(this).animate({opacity:0}, 2000);
             }
         );
 
