@@ -2,7 +2,7 @@ from smh_gallery.models import Gallery, Image
 from django.contrib import admin
 
 class GalleryAdmin(admin.ModelAdmin):
-    fields = ('slug','name','description')
+    fields = ('name','description')
     list_display = ('name', 'slug')
 
 admin.site.register(Gallery, GalleryAdmin)

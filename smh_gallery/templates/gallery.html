@@ -1,10 +1,8 @@
 {% extends "base.html" %}
 
 {% block head %}
-
   <link rel="stylesheet" href="{{ STATIC_URL }}foundation/stylesheets/foundation.min.css">
   <script src="{{ STATIC_URL }}foundation/javascripts/modernizr.foundation.js"></script>
-
 {% endblock %}
 
 {% block one_column %}
@@ -15,104 +13,19 @@
 Bootstrap does strange things, so I create a row with 4 elements max.
 {% endcomment%}
 
+<ul class="thumbnails" data-clearing>
 {% for image in images %}
-  {% if forloop.counter0|divisibleby:"4" %}<ul class="thumbnails" data-clearing>{% endif %}
   <li class="span3">
     <a href="{{image.image.url}}" class="thumbnail">
-      <img data-caption="{{image.name}}({{image.date}}) - {{image.description}}" src="{{image.image.url_370x229}}" alt="{{image.name}}">
+      <img data-caption="{{image.name}} ({{image.date}}) - {{image.description}}" src="{{image.image.url_370x229}}" alt="{{image.name}}" class="img_color-gray">
     </a>
   </li>
-  {% if forloop.last or forloop.counter|divisibleby:"4"  %}</ul>{% endif %}
 {% endfor %}
-
-
+</ul>
 {% endblock %}
-
 
 {% block js %}
 <script src="{{ STATIC_URL }}foundation/javascripts/foundation.min.js"></script>
 <script src="{{ STATIC_URL }}foundation/javascripts/app.js"></script>
-<script type="text/javascript">
-
-    $(window).load(function(){
-
-        $('.thumbnail img').each(
-            function(){
-                var img = $(this); //Will be grayscaled
-                parent = $(this).parent()[0];
-                img.clone().addClass('img_color').insertBefore(img);
-                img.addClass('img_grayscale');
-                var img_gray = $(img).parent().find('.img_grayscale')[0];
-                var img_color = $(img).parent().find('.img_color')[0];
-                copy_style(img_gray, img_color);
-                $(img_color).css({"opacity":"1"}); //Avoid blink
-                img_gray.src = grayscale(this.src);
-            }
-        );
-
-        //Avoid blink
-        $('.img_color').each(
-            function(){
-                $(this).animate({opacity:0}, 2000);
-            }
-        );
-
-        $('.thumbnail .img_color').mouseover(
-            function(){
-                $(this).stop().animate({opacity:1}, 1000);
-            });
-
-        $('.thumbnail .img_color').mouseout(
-            function(){
-                $(this).stop().animate({opacity:0}, 1000);
-            }
-        );
-
-    });
-
-
-    //Responsive
-    $(window).resize(function() {
-        $('.thumbnail').each(
-            function(){
-                var img_gray = $(this).find('.img_grayscale')[0];
-                var img_color = $(this).find('.img_color')[0];
-                copy_style(img_gray, img_color);
-            }
-        );
-    });
-
-
-
-    function copy_style(origin, destiny){
-         $(destiny).css({"position":"absolute","z-index":"998","opacity":"0"});
-         $(destiny).css({"position":"absolute","width":origin.offsetWidth,"height":origin.offsetHeight});
-         $(destiny).offset($(origin).offset());
-    }
-
-
-    // Grayscale w canvas method
-    function grayscale(src){
-        var canvas = document.createElement('canvas');
-        var ctx = canvas.getContext('2d');
-        var imgObj = new Image();
-        imgObj.src = src;
-        canvas.width = imgObj.width;
-        canvas.height = imgObj.height;
-        ctx.drawImage(imgObj, 0, 0);
-        var imgPixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        for(var y = 0; y < imgPixels.height; y++){
-            for(var x = 0; x < imgPixels.width; x++){
-                var i = (y * 4) * imgPixels.width + x * 4;
-                var avg = ((imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) /2) - 32  ;
-                imgPixels.data[i] = avg;
-                imgPixels.data[i + 1] = avg;
-                imgPixels.data[i + 2] = avg;
-            }
-        }
-        ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
-        return canvas.toDataURL();
-    }
-
-</script>
+<script src="{{ STATIC_URL }}js/js-smh_colorgray.js"></script>
 {% endblock %}

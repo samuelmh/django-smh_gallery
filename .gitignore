@@ -1,5 +1,5 @@
 *~
 *.pyc
-sqlitedb
-smh_gallery/static/galleryimages/*
-static
+/sqlitedb
+/smh_gallery/static/galleryimages/*
+/static
