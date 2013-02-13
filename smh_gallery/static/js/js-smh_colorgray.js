@@ -48,11 +48,10 @@ $(window).load(function(){
 
 //Responsive
 $(window).resize(function() {
-    $('.img_color-gray').each(
+    $('.img_color').each(
         function(){
-            var img_gray = $(this).find('.img_gray')[0];
-            var img_color = $(this).find('.img_color')[0];
-            copy_style(img_gray, img_color);
+            var img_gray = $(this).parent().find('.img_gray')[0];
+            copy_style(img_gray, this);
         }
     );
 });
