@@ -120,14 +120,11 @@ def generate_thumb_max_rectangle(img_in, size, format):
     xoffset = (xsize-xtmp)/2
     yoffset = (ysize-ytmp)/2    
     
-    image2 = image.crop((
-        int(round(xoffset)), int(round(yoffset)),
-        int(round(xoffset+xtmp)), int(round(yoffset+ytmp))
-    ))
-    # load is necessary after crop                
-    image2.load()
-    image2.thumbnail(size, Image.ANTIALIAS)
-        
+    image2 = image.transform(
+        size, Image.EXTENT,
+        ( int(round(xoffset)),      int(round(yoffset)),
+          int(round(xoffset+xtmp)), int(round(yoffset+ytmp)) )
+    )        
     
     io = cStringIO.StringIO()
     # PNG and GIF are the same, JPG is JPEG
@@ -136,69 +133,7 @@ def generate_thumb_max_rectangle(img_in, size, format):
     
     image2.save(io, format)
     return ContentFile(io.getvalue()) 
-
-
-    
-def generate_thumb_min_size(img_in, size, format):
-    """
-    Generates the biggest rectangle proportional to size on the original image,
-    (img_in) centers it on the picture, resizes it to size.
-    
-    Author: Samuel Muñoz Hidalgo <samuel.mh@gmail.com>
-    
-    
-    Parameters:
-    ===========
-    img_in      File object, original image
-    
-    size        (Width, height) of the generated thumbnail
-    
-    format      format of the original image ('jpeg','gif','png',...)
-                (this format will be used for the generated thumbnail, too)
-                
-    Returns: a ContentFile object with the thumbnail.
-    """
-    
-    img_in.seek(0) # see http://code.djangoproject.com/ticket/8222 for details
-    image = Image.open(img_in)
-    
-    # Convert to RGB if necessary
-    if image.mode not in ('L', 'RGB', 'RGBA'):
-        image = image.convert('RGB')
-        
-    # Thumbnail size
-    xthumb, ythumb = size
-    
-    #proportion between thumbnail sides
-    relthumb = xthumb/ythumb
-    
-    # Original image size
-    xsize, ysize = image.size
-        
-    #Biggest proportional rectangle (xtmp,ytmp)
-    #Rectangle offset (xoffset,yoffset)
-    if (xsize/ysize)>relthumb:
-        #Height limits
-        xtmp = xthumb
-        ytmp = xthumb*relthumb
-    else:
-        #Width limits
-        ytmp = ythumb
-        xtmp = ythumb/relthumb
-            
-    image2 = image 
-    image2.thumbnail((int(round(xtmp)), int(round(ytmp))), Image.ANTIALIAS)
-        
-    
-    io = cStringIO.StringIO()
-    # PNG and GIF are the same, JPG is JPEG
-    if format.upper()=='JPG':
-        format = 'JPEG'
-    
-    image2.save(io, format)
-    return ContentFile(io.getvalue()) 
-
-    
+   
 
 class ImageWithThumbsFieldFile(ImageFieldFile):
     """
@@ -250,7 +185,8 @@ class ImageWithThumbsFieldFile(ImageFieldFile):
                     self.storage.delete(thumb_name)
                 except:
                     pass
-                        
+ 
+ 
 class ImageWithThumbsField(ImageField):
     attr_class = ImageWithThumbsFieldFile
     
