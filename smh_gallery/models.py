@@ -1,23 +1,14 @@
 
 from django.db import models
 from django.core.files.storage import FileSystemStorage
+from django.template.defaultfilters import slugify
 
 import thumbs
 
-#Slugified PK
-import re
-import unidecode
-
-
-
-def slugify(str):
-    str = unidecode.unidecode(str).lower()
-    return re.sub(r'\W+','-',str)
-
 
 class Gallery(models.Model):
-    slug = models.CharField(max_length=200, primary_key=True)
-    name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=50, primary_key=True)
+    name = models.CharField(max_length=50)
     description = models.TextField(blank=True)
 
 
@@ -38,8 +29,8 @@ class Gallery(models.Model):
 
 fs = FileSystemStorage(location='smh_gallery/static/galleryimages/', base_url="/static/galleryimages/")
 class Image(models.Model):
-    slug = models.CharField(max_length=200, primary_key=True)
-    name =  models.CharField(max_length=200)
+    slug = models.SlugField(max_length=50, primary_key=True)
+    name =  models.CharField(max_length=50)
     image = thumbs.ImageWithThumbsField(storage=fs, upload_to='./', sizes=((370, 229, thumbs.generate_thumb_max_rectangle),))
     description = models.TextField(blank=True)
     date = models.DateField(blank=True)

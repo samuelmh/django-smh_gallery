@@ -2,7 +2,6 @@
 
 {% block head %}
   <link rel="stylesheet" href="{{ STATIC_URL }}foundation/stylesheets/foundation.min.css">
-  <script src="{{ STATIC_URL }}foundation/javascripts/modernizr.foundation.js"></script>
 {% endblock %}
 
 {% block one_column %}
@@ -17,7 +16,7 @@ Bootstrap does strange things, so I create a row with 4 elements max.
 {% for image in images %}
   <li class="span3">
     <a href="{{image.image.url}}" class="thumbnail">
-      <img data-caption="{{image.name}} ({{image.date}}) - {{image.description}}" src="{{image.image.url_370x229}}" alt="{{image.name}}" class="img_color-gray">
+      <img data-caption="{{image.name}} - {{image.date}}" src="{{image.image.url_370x229}}" alt="{{image.name}}" class="img_color-gray">
     </a>
   </li>
 {% endfor %}
