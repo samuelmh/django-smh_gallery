@@ -9,7 +9,7 @@ What is this?
 This project can be understood in two ways:
 
 1.  It is a __Django app__ to show and manage images grouped in galleries.
-2.  It is a __web application__ that let you do the previous. Perfect option for people who just need a simple portfolio page and only want to focus on their work (artists, photographers, designers, painters). 
+2.  It is a __web application__ that let you do the previous. Perfect option for people who just need a simple portfolio page and only want to focus on their work (artists, photographers, designers, painters).
 
 
 Features
@@ -27,7 +27,7 @@ Technologies used
 *   [Foundation][4]: for its clearing widget (full screen carousel).
 
 
-As django app
+As a django app
 -------------------------
 Deploy the folder smh_gallery as if it were another Django app and include the app in your settings.py.
 If you have any doubt, see the example provided in the myapp folder.
@@ -37,7 +37,7 @@ As a web application
 -------------------------
 
 ### First steps, the hard part ###
-Download the full project. You should install a Django environment in your computer so you can test the web app locally.
+Download the latest version, they are on tags. The main branch could not work, so don't use clone. You should install a Django environment in your computer so you can test the web app locally.
 This application uses a database, by default sqlite engine is used, if you want to change it to mysql or other, edit the file myapp/settings.py and set your desired one.
 
 Open a console and go to the root project  folder "django-smh_gallery".
