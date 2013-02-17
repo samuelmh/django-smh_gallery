@@ -7,8 +7,8 @@ A simple photo gallery app for the Django web framework.
 What is this?
 -------------
 This project can be understood in two ways.
-1.   It is a Django app to show and manage images grouped in galleries.
-2.   It is a web application that let you do the previous.
+1.  It is a Django app to show and manage images grouped in galleries.
+2.  It is a web application that let you do the previous.
 Perfect option for people that just need a simple portfolio page and only want to focus in their work (artists, photographers, designers, painters). 
 
 
