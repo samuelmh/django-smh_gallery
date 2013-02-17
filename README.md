@@ -7,9 +7,9 @@ A simple photo gallery app for the Django web framework.
 What is this?
 -------------
 This project can be understood in two ways:
+
 1.  It is a __Django app__ to show and manage images grouped in galleries.
-2.  It is a __web application__ that let you do the previous.
-Perfect option for people that just need a simple portfolio page and only want to focus in their work (artists, photographers, designers, painters). 
+2.  It is a __web application__ that let you do the previous. Perfect option for people who just need a simple portfolio page and only want to focus on their work (artists, photographers, designers, painters). 
 
 
 Features
@@ -59,9 +59,7 @@ If you have more questions on how to deploy, install, etc, please take a look to
     *   The footer so you can put your copyright message.
     *   The Bootstrap theme (mainly the colors). See [Boottheme][5] and [Style Bootstrap][6].
 
-*   __Sections__
-
-    The first issue you have to face is to define the sections your web will have. In the provided example there are four links: the homepage, my blog (external), a gallery and the about page. With some knowledge of html and the [Bootstrap documentation][3] (see the examples section), you will be able to redefine all.
+*   Define the __sections__ your web will have. In the provided example there are four links: the homepage, my blog (external), a gallery and the about page. With some knowledge of html and the [Bootstrap documentation][3] (see the examples section), you will be able to redefine all.
 
 *   An _internal link__ is a link to somewhere in your web. I recommend you to follow the examples when defining an internal link:
     1.  Link to the home (exception)
@@ -119,7 +117,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Although the previous is utopic, I want to say tow things.
+Although the previous is utopic, I want to say two things.
 
 If you find this software useful, please take into considerating:
 *   To give some money to the Wikipedia or an open source project.
@@ -130,7 +128,7 @@ If you find this software useful, please take into considerating:
 
 The only restrictions I put on this software are:
 *   It MUST NOT be used by any security (militar, police, pacification, liberation, whatever to do with men and weapons) organization.
-*   It MUST NOT be used to promote antihuman behaviours (hate, proselitism, racism, xenophobia, etc).
+*   It MUST NOT be used to promote antihuman behaviours (war, violence, hate, proselitism, racism, xenophobia, etc).
 
 
 [1]: http://www.python.org/ "Python"
