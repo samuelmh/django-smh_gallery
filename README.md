@@ -53,18 +53,17 @@ If you have more questions on how to deploy, install, etc, please take a look to
 
 
 ### Configuring the base ###
-*   __base.html__
-The file myapp/templates/base.html defines de basic template that will be loaded for every page. If you edit the file, you can change manually thing like:
-* The title of the page
-* The navigation bar sections
-* The footer so you can put your copyright message.
-* The Bootstrap theme (mainly the colors). See [Boottheme][5] and [Style Bootstrap][6].
+*   The file __myapp/templates/base.html__ defines de basic template that will be loaded for every page. If you edit the file, you can change manually thing like:
+    *   The title of the page
+    *   The navigation bar sections
+    *   The footer so you can put your copyright message.
+    *   The Bootstrap theme (mainly the colors). See [Boottheme][5] and [Style Bootstrap][6].
 
 *   __Sections__
-The first issue you have to face is to define the sections your web will have. In the provided example there are four links: the homepage, my blog (external), a gallery and the about page. With some knowledge of html and the [Bootstrap documentation][3] (see the examples section), you will be able to redefine all.
 
-*   __Defining a internal link__
-A internal link is a link to somewhere in your web. I recommend you to follow the examples when defining an internal link:
+    The first issue you have to face is to define the sections your web will have. In the provided example there are four links: the homepage, my blog (external), a gallery and the about page. With some knowledge of html and the [Bootstrap documentation][3] (see the examples section), you will be able to redefine all.
+
+*   An _internal link__ is a link to somewhere in your web. I recommend you to follow the examples when defining an internal link:
     1.  Link to the home (exception)
     `<a href="{% url home %}">Home</a>`
     2.  Link to a satic page (not the homepage).
