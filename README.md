@@ -25,7 +25,7 @@ Technologies used
 *   [Django][2]: web framework.
 *   [Bootstrap][3]: front-end framework.
 *   [Foundation][4]: for its clearing widget (full screen carousel).
-
+*   [Django-thumbs][7]: a thumbnailing app for Django.
 
 As a django app
 -------------------------
@@ -37,7 +37,7 @@ As a web application
 -------------------------
 
 ### First steps, the hard part ###
-Download the latest version, they are on tags. The main branch could not work, so don't use clone. You should install a Django environment in your computer so you can test the web app locally.
+Download the latest version, they are on the [tags section][8]. The main branch could not work, so don't use clone. You should install a Django environment in your computer so you can test the web app locally.
 This application uses a database, by default sqlite engine is used, if you want to change it to mysql or other, edit the file myapp/settings.py and set your desired one.
 
 Open a console and go to the root project  folder "django-smh_gallery".
@@ -137,3 +137,5 @@ The only restrictions I put on this software are:
 [4]: http://foundation.zurb.com/ "Foundation"
 [5]: http://www.boottheme.com/#generatetheme "Boottheme - Bootstrap theme generator"
 [6]: http://stylebootstrap.info/ "Stylebootstrap - Bootstrap theme generator"
+[7]: https://github.com/zenx/django-thumbs "Django-thumbnails"
+[8]: https://github.com/samuelmh/django-smh_gallery/tags "Tags section"
