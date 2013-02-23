@@ -2,6 +2,7 @@
 from django.db import models
 from django.core.files.storage import FileSystemStorage
 from django.template.defaultfilters import slugify
+from django.conf import settings
 
 import thumbs
 
@@ -11,27 +12,22 @@ class Gallery(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(blank=True)
 
-
     class Meta:
         ordering = ['name']
         verbose_name_plural = "galleries"
 
-
     def __unicode__(self):
         return(self.name)
-
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Gallery, self).save(*args, **kwargs) # Call the "real" save() method.
 
 
-
-fs = FileSystemStorage(location='smh_gallery/static/galleryimages/', base_url="/static/galleryimages/")
 class Image(models.Model):
     slug = models.SlugField(max_length=50, primary_key=True)
     name =  models.CharField(max_length=50)
-    image = thumbs.ImageWithThumbsField(storage=fs, upload_to='./', sizes=((370, 229, thumbs.generate_thumb_max_rectangle),))
+    image = thumbs.ImageWithThumbsField(upload_to='smh_gallery', sizes=((370, 229, thumbs.generate_thumb_max_rectangle),))
     description = models.TextField(blank=True)
     date = models.DateField(blank=True)
     gallery = models.ForeignKey(Gallery)
@@ -42,7 +38,10 @@ class Image(models.Model):
     def __unicode__(self):
         return(self.name)
 
-
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Image, self).save(*args, **kwargs) # Call the "real" save() method.
+
+
+
+
