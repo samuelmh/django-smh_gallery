@@ -12,7 +12,7 @@
 {% for image in images %}
   <li class="span3">
     <a href="{{image.image.url}}" class="thumbnail" title="{{image.name}}">
-      <img data-permalink="{% url smh_gallery_image gallery.slug image.slug %}" data-caption="{{image.name}}" src="{{image.image.url_370x229}}" alt="{{image.name}}" class="img_color-gray img-rounded">
+      <img data-permalink="{% url 'smh_gallery_image' gallery.slug image.slug %}" data-caption="{{image.name}}" src="{{image.image.url_370x229}}" alt="{{image.name}}" class="img_color-gray img-rounded">
     </a>
   </li>
 {% endfor %}

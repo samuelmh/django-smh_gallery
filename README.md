@@ -4,6 +4,13 @@ django-smh_gallery
 A simple photo gallery app for the Django web framework.
 
 
+Show me examples!
+-----------------
+Here are some real pages that use this software.
+*   __Iris M.O.'s portfolio -__ [http://irismo.com][9]
+    A designer, illustrator and tattoo artist promise.
+
+
 What is this?
 -------------
 This project can be understood in two ways:
@@ -63,25 +70,25 @@ If you have more questions on how to deploy, install, etc, please take a look to
 
 *   An _internal link__ is a link to somewhere in your web. I recommend you to follow the examples when defining an internal link:
     1.  Link to the home (exception)
-    `<a href="{% url home %}">Home</a>`
+    `<a href="{% url 'home' %}">Home</a>`
     2.  Link to a satic page (not the homepage).
-    `<a href="{% url static_section "about_me" %}">About me</a>`
+    `<a href="{% url 'static_section' 'about_me' %}">About me</a>`
     3.  Link to a gallery.
-    `<a href="{% url smh_gallery_gallery "slug of the gallery" %}">My Gallery</a>`
+    `<a href="{% url 'smh_gallery_gallery' 'slug of the gallery' %}">My Gallery</a>`
     4.  Link to an image.
-    `<a href="{% url smh_gallery_image "slug of the gallery" "slug of the image" %}">My Gallery</a>`
-NOTE: the slug is the name the system gives to your gallery, it's based on the name you gave.
-
+    `<a href="{% url 'smh_gallery_image' 'slug of the gallery' 'slug of the image' %}">My Gallery</a>`
+__NOTE__: the slug is the name the system gives to your gallery, it's based on the name you gave.
+__NOTE__: the software is meant to be run on Django 1.5 and above. If you use an older version, please include the `{% load url from future %}` tag in the beginning of your templates or you'll have to rewrite all the links (there are only a few).
 
 ### Adding a static page ###
 You can define static pages in the folder myapp/templates/ . Just copy one, change the name and edit it. Remember to focus only in the content you want to show, as other things as the navigation bar and the footer are defined in the base.html template.
 
 If you want to link your static page (i.e static.html) somewhere in your app, follow the next example.
-`<a href="{% url static_section "static" %}">link to my static page</a>`
+`<a href="{% url 'static_section' 'static' %}">link to my static page</a>`
 
 
 ### Adding a gallery ###
-If you run the provided code out of the box, youll notice that the "My Gallery" link doesn't work. It's done on purpose for this example.
+If you run the provided code out of the box, you will notice that the "My Gallery" link doesn't work. It's done on purpose for this example.
 
 Once your basic layout is set, you can manage your images/galleries via web.
 1.  Open the webpage http://localhost:8000/admin/ and sign in with the credentials you set when your synchronized the database. You should see the Django administration page.
@@ -119,11 +126,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Although the previous is utopic, I want to say two things.
 
-If you find this software useful, please take into considerating:
+If you find this software useful, please considerate:
 *   To give some money to the Wikipedia or an open source project.
 *   To pay me a beer if you ever see me or if you don't, to pay a homeless a meal.
 *   To donate (time, money, whatever) to charity.
-*   To give me your soul (if you are a member tight fisted brotherhood or an idler).
+*   To give me your soul (if you are a member of the tight fisted brotherhood or an idler).
 
 
 The only restrictions I put on this software are:
@@ -139,3 +146,4 @@ The only restrictions I put on this software are:
 [6]: http://stylebootstrap.info/ "Stylebootstrap - Bootstrap theme generator"
 [7]: https://github.com/zenx/django-thumbs "Django-thumbnails"
 [8]: https://github.com/samuelmh/django-smh_gallery/tags "Tags section"
+[9]: http://irismo.com "Iris M.O.'s portfolio"
