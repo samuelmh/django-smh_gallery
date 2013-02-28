@@ -60,24 +60,28 @@ If you have more questions on how to deploy, install, etc, please take a look to
 
 
 ### Configuring the base ###
-*   The file __myapp/templates/base.html__ defines de basic template that will be loaded for every page. If you edit the file, you can change manually thing like:
+*   The file __myapp/templates/base.html__ defines de basic template that will be loaded for every page. If you edit the file, you can change manually things like: 
     *   The title of the page
     *   The navigation bar sections
     *   The footer so you can put your copyright message.
-    *   The Bootstrap theme (mainly the colors). See [Boottheme][5] and [Style Bootstrap][6].
+    *   The Bootstrap theme (mainly the colors). See [Boottheme][5] and [Style Bootstrap][6]. 
+
 
 *   Define the __sections__ your web will have. In the provided example there are four links: the homepage, my blog (external), a gallery and the about page. With some knowledge of html and the [Bootstrap documentation][3] (see the examples section), you will be able to redefine all.
 
+
 *   An _internal link__ is a link to somewhere in your web. I recommend you to follow the examples when defining an internal link:
-    1.  Link to the home (exception)
+    *   Link to the home (exception)    
     `<a href="{% url 'home' %}">Home</a>`
-    2.  Link to a satic page (not the homepage).
+    *   Link to a satic page (not the homepage).
     `<a href="{% url 'static_section' 'about_me' %}">About me</a>`
-    3.  Link to a gallery.
+    *   Link to a gallery.
     `<a href="{% url 'smh_gallery_gallery' 'slug of the gallery' %}">My Gallery</a>`
-    4.  Link to an image.
+    *   Link to an image.
     `<a href="{% url 'smh_gallery_image' 'slug of the gallery' 'slug of the image' %}">My Gallery</a>`
+
 __NOTE__: the slug is the name the system gives to your gallery, it's based on the name you gave.
+
 __NOTE__: the software is meant to be run on Django 1.5 and above. If you use an older version, please include the `{% load url from future %}` tag in the beginning of your templates or you'll have to rewrite all the links (there are only a few).
 
 ### Adding a static page ###
