@@ -44,10 +44,13 @@ As a web application
 -------------------------
 
 ### First steps, the hard part ###
-Download the latest version, they are on the [tags section][8]. The main branch could not work, so don't use clone. You should install a Django environment in your computer so you can test the web app locally.
-This application uses a database, by default sqlite engine is used, if you want to change it to mysql or other, edit the file myapp/settings.py and set your desired one.
 
-Open a console and go to the root project  folder "django-smh_gallery".
+Make a directory (i.e. web).
+
+Download the latest version, they are on the [tags section][8]. The main branch could not work, so don't use clone. You should install a Django environment in your computer so you can test the web app locally.
+This application uses a database. By default sqlite engine is used. If you want to change it to mysql or other, edit the file myapp/settings.py and set your desired one.
+
+Open a console and go to the root project folder "django-smh_gallery".
 Synchronize/create the database. Type:
 `python manage.py syncdb`
 It will create the database and will ask you for the admin credentials that will be used in the future.
@@ -58,20 +61,32 @@ Run the testing server. Type:
 You should have the testing web server running, so if you try to open the http://localhost:8000 web, the home page appears.
 If you have more questions on how to deploy, install, etc, please take a look to the [Django documentation][2]. The tutorial is pretty nice!
 
+### Directory tree ###
+*   web
+    *   django-smh_gallery
+        *   deploy - contains sample files used when deploying on apache server.
+        *   myapp - base application folder.
+            *   settings.py - the configuration file.
+        *   smh_gallery - django gallerry app.
+    *   media - where the pictures you upload and their miniatures are stored.
+    *   static - where app static files are stored once ``.
+
+### Deploying the app ###
+If you want to deploy the app on Apache server, in the deploy folder there are .htaccess and wsgi.py sample files that you could use.
 
 ### Configuring the base ###
-*   The file __myapp/templates/base.html__ defines de basic template that will be loaded for every page. If you edit the file, you can change manually things like: 
+*   The file __myapp/templates/base.html__ defines de basic template that will be loaded for every page. If you edit the file, you can change manually things like:
     *   The title of the page
     *   The navigation bar sections
     *   The footer so you can put your copyright message.
-    *   The Bootstrap theme (mainly the colors). See [Boottheme][5] and [Style Bootstrap][6]. 
+    *   The Bootstrap theme (mainly the colors). See [Boottheme][5] and [Style Bootstrap][6].
 
 
 *   Define the __sections__ your web will have. In the provided example there are four links: the homepage, my blog (external), a gallery and the about page. With some knowledge of html and the [Bootstrap documentation][3] (see the examples section), you will be able to redefine all.
 
 
 *   An _internal link__ is a link to somewhere in your web. I recommend you to follow the examples when defining an internal link:
-    *   Link to the home (exception)    
+    *   Link to the home (exception)
     `<a href="{% url 'home' %}">Home</a>`
     *   Link to a satic page (not the homepage).
     `<a href="{% url 'static_section' 'about_me' %}">About me</a>`
