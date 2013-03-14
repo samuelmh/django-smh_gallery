@@ -1,6 +1,7 @@
 # Django settings for django_smh_gallery project.
 
 ## Added params
+# Absolute route of the webapp
 BASE_PATH = "/home/samuelmh/projects/django-smh_gallery/"
 ##
 
