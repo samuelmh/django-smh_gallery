@@ -1,8 +1,6 @@
 
 from django.db import models
-from django.core.files.storage import FileSystemStorage
 from django.template.defaultfilters import slugify
-from django.conf import settings
 
 import thumbs
 
