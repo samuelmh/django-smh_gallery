@@ -153,7 +153,7 @@ If you find this software useful, please considerate:
 
 
 The only restrictions I put on this software are:
-*   It MUST NOT be used by any security (militar, police, pacification, liberation, whatever to do with men and weapons) organization.
+*   It MUST NOT be used by any security (militar, police, pacification, liberation, whatever to do with humans and weapons) organization.
 *   It MUST NOT be used to promote antihuman behaviours (war, violence, hate, proselitism, racism, xenophobia, etc).
 
 
